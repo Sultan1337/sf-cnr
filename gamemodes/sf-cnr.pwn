@@ -1619,6 +1619,7 @@ public OnPlayerText( playerid, text[ ] )
 			}
 			case '#':
 			{
+			    if ( IsPlayerChatBanned( playerid ) ) return SendError( playerid, "You can not use this feature as you are chat banned" );
 			    if ( p_VIPLevel[ playerid ] > 0 )
 			    {
 					DCC_SendChannelMessageFormatted( discordChatChan, "**[%s] (VIP) %s(%d):** %s", getCurrentTime(), ReturnPlayerName( playerid ), playerid, text[ 1 ] );
@@ -1628,6 +1629,7 @@ public OnPlayerText( playerid, text[ ] )
 			}
 			case '$':
 			{
+			    if ( IsPlayerChatBanned( playerid ) ) return SendError( playerid, "You can not use this feature as you are chat banned" );
 			    if ( p_VIPLevel[ playerid ] > 0 )
 			    {
 					SendClientMessageToVips( -1, ""COL_GOLD"<VIP Chat> %s(%d):"COL_GREY" %s", ReturnPlayerName( playerid ), playerid, text[ 1 ] );
