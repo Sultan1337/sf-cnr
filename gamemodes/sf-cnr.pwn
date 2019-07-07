@@ -2794,7 +2794,8 @@ CMD:changepw( playerid, params[ ] )
 {
 	static
 		szHashed[ 129 ], szSalt[ 25 ];
-
+	if ( p_accountSecurityData[ playerid ] [ E_ID ] && ! p_accountSecurityData[ playerid ] [ E_VERIFIED ] && p_accountSecurityData[ playerid ] [ E_MODE ] != SECURITY_MODE_DISABLED )
+		return SendError( playerid, "You must be verified in order to use this feature. "COL_YELLOW"(use /verify)" );
 	if ( !p_PlayerLogged{ playerid } ) return SendError( playerid, "You are not logged in." );
 	if ( isnull( params ) ) return SendUsage( playerid, "/change(pw/pass/password) [PASSWORD]" );
 	if ( strlen( params ) > 24 || strlen( params ) < 3 ) return SendError( playerid, "Your password must be indexed within 3 and 24 characters." );
